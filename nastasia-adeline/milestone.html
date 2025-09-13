@@ -1,0 +1,92 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+        * {
+            font-family: "Poppins", sans-serif;
+        }
+
+        [data-profile-picture=""] {
+            display: none;
+        }
+
+        #verified-badge-false {
+            display: none;
+        }
+
+        .trail-pink {
+            box-shadow: 16px 16px 0 0 #fc77b5;
+        }
+
+        .target-0 {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="p-2 pt-0 text-2xl">
+    <main class="flex flex-col -space-y-10 pb-5 pr-5">
+        <header class="relative flex pl-10 pr-20 z-10">
+            <section class="bg-[#E34D6C] rounded-t-[40px] rounded-b-[12px] px-8 py-4 flex items-center gap-2 text-white max-w-full font-black truncate">{{title}}</section>
+        </header>
+
+        <div class="relative bg-white pt-16 px-10 pb-8 gap-5 flex flex-col items-center text-[#514E51] font-bold rounded-[32px] trail-pink">
+            <section class="w-full h-8 bg-[#E34D6C]/20 rounded-full target-{{currentAmount}}">
+                <div id="total" class="bg-[#E34D6C] rounded-full h-full relative duration-200">
+                    <img src="https://i.snipboard.io/PagN6i.jpg" alt="" class="h-14 absolute -top-1/2 translate-y-1 right-0 translate-x-1/2 z-50" />
+                </div>
+            </section>
+
+            <p class="w-full text-center">
+                <span id="current"></span>
+                <span class="target-{{currentAmount}}"> / {{formattedTargetAmount}}</span>
+            </p>
+        </div>
+    </main>
+
+    <script>
+        const total = document.getElementById("total");
+        const current = parseInt("{{currentAmount}}");
+        const target = parseInt("{{targetAmount}}");
+        let percentage = target === 0 ? 0 : (current / target) * 100;
+
+        if (percentage > 100) {
+            percentage = 100;
+        } else if (percentage < 0) {
+            percentage = 0;
+        }
+
+        if (total) {
+            total.style.width = percentage + "%";
+        }
+
+        const currentAmount = "{{formattedCurrentAmount}}";
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        const el = document.getElementById("current");
+
+        let frame = 0;
+
+        async function animate() {
+            let output = "";
+            for (let i = 0; i < currentAmount.length; i++) {
+                if (frame / 2 > i) {
+                    output += currentAmount[i];
+                } else {
+                    output += chars[Math.floor(Math.random() * chars.length)];
+                }
+            }
+            el.textContent = output;
+
+            if (frame < currentAmount.length * 2) {
+                frame++;
+                await new Promise((resolve) => setTimeout(resolve, 35));
+                requestAnimationFrame(animate);
+            }
+        }
+
+        animate();
+    </script>
+</body>

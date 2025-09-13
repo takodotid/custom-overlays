@@ -1,0 +1,83 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-theme: #37a2ea;
+        }
+    </style>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+        * {
+            font-family: "Montserrat", sans-serif;
+        }
+
+        [data-profile-picture=""] {
+            display: none;
+        }
+
+        #verified-badge-false {
+            display: none;
+        }
+
+        .header {
+            clip-path: polygon(0% 0%, 100% 0%, 93% 100%, 0% 100%);
+            -webkit-clip-path: polygon(0% 0%, 100% 0%, 93% 100%, 0% 100%);
+        }
+
+        .box {
+            clip-path: polygon(0% 0%, 100% 0%, 97% 100%, 3% 100%);
+            -webkit-clip-path: polygon(0% 0%, 100% 0%, 97% 100%, 3% 100%);
+        }
+    </style>
+</head>
+
+<body class="p-5 pb-0 flex flex-col items-center overflow-hidden">
+    <div class="flex rounded-md items-end max-w-[80%]">
+        <section class="relative shrink-0 size-52 z-20">
+            <img class="size-full relative z-10" src="https://admin.tako.id/assets/fd96087f-81c6-4183-921e-4adf51b065d5" alt="" />
+
+            <div class="absolute inset-0 size-full bg-theme rounded-full"></div>
+        </section>
+
+        <section class="relative min-w-96 -ml-10">
+            <div class="header relative z-10 bg-black flex gap-3 items-center text-white px-16 py-8 border-y-[3px] border-theme">
+                <img data-profile-picture="{{gifterPicture}}" src="{{gifterPicture}}" class="size-16 rounded-full bg-white border-theme border" />
+
+                <section class="flex flex-col w-[90%]">
+                    <div id="user" class="flex gap-2 items-center">
+                        <h1 class="text-3xl font-bold truncate">{{gifterName}}</h1>
+
+                        <img id="verified-badge-{{isGifterVerified}}" src="https://assets.tako.id/badges/validated-user.png" alt="" class="size-7 shrink-0" />
+                    </div>
+
+                    <h2 class="text-2xl font-semibold text-theme truncate">{{formattedAmount}}</h2>
+                </section>
+            </div>
+
+            <div class="header bg-theme absolute size-full inset-0 translate-x-1"></div>
+        </section>
+    </div>
+
+    <div class="relative -mt-0.5 min-w-[700px] z-20">
+        <p class="box relative z-10 bg-black max-w-full overflow-auto border-y-[3px] border-theme py-5 px-16 text-center text-xl leading-9 text-white">{{message}}</p>
+
+        <section class="box bg-theme absolute size-full inset-0 -translate-x-1"></section>
+        <section class="box bg-theme absolute size-full inset-0 translate-x-1"></section>
+    </div>
+
+    <script>
+        const badges = "{{gifterBadges}}";
+        const badgeContainer = document.getElementById("user");
+
+        if (badges && badgeContainer) {
+            badgeContainer.innerHTML += badges
+                .split(",")
+                .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-7 shrink-0" />`)
+                .join(" ");
+        }
+    </script>
+</body>

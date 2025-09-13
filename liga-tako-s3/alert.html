@@ -1,0 +1,71 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --font-aleo: "Aleo", sans-serif;
+
+            --color-*: initial;
+            --color-primary: #4a90e2;
+            --color-black: #000000;
+            --color-white: #ffffff;
+            --color-yellow: #ffb60e;
+            --color-transparent: transparent;
+            --color-none: none;
+
+            --bg-img-black: url("https://liga-tako-s3.pages.dev/images/bg-black.png");
+            --bg-img-white: url("https://liga-tako-s3.pages.dev/images/bg-white.png");
+            --bg-img-yellow: url("https://liga-tako-s3.pages.dev/images/bg-yellow.png");
+        }
+
+        @utility bg-* {
+            background-image: --value(--bg-img- *);
+            background-size: cover;
+            background-position: center;
+        }
+
+        * {
+            @apply font-aleo;
+        }
+    </style>
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap");
+    </style>
+</head>
+
+<body class="p-8 pb-0 overflow-hidden">
+    <main class="w-full bg-yellow border-2 border-black flex flex-col relative">
+        <header class="flex items-center w-full bg-black p-4 pt-6 text-white">
+            <section class="flex flex-col w-[90%]">
+                <div id="user" class="flex gap-2 items-center">
+                    <h1 class="text-3xl font-bold truncate">{{gifterName}}</h1>
+                    <img id="verified-badge-{{isGifterVerified}}" src="https://assets.tako.id/badges/validated-user.png" alt="" class="size-7 shrink-0" />
+                </div>
+
+                <h2 class="text-2xl font-semibold text-yellow truncate">{{formattedAmount}}</h2>
+            </section>
+        </header>
+
+        <p class="text-xl leading-snug p-4 pb-6 w-[80%] overflow-hidden text-black empty:hidden">{{message}}</p>
+
+        <img
+            src="https://cdn.discordapp.com/attachments/1128249706074607687/1405876189809086506/image.png?ex=68a06bbb&is=689f1a3b&hm=e9ea9309aac06877548943865c72a98d8a601a1258e5951c44a25db8b37f44a5&"
+            alt=""
+            class="absolute -top-10 -right-7 h-[160%] max-h-96 rotate-12" />
+    </main>
+
+    <script>
+        const badges = "{{gifterBadges}}";
+        const badgeContainer = document.getElementById("user");
+
+        if (badges && badgeContainer) {
+            badgeContainer.innerHTML += badges
+                .split(",")
+                .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-7 shrink-0" />`)
+                .join(" ");
+        }
+    </script>
+</body>

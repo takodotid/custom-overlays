@@ -1,0 +1,54 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+        * {
+            font-family: "Poppins", sans-serif;
+        }
+
+        [data-profile-picture=""] {
+            display: none;
+        }
+
+        #verified-badge-false {
+            display: none;
+        }
+
+        .trail-pink {
+            box-shadow: 16px 16px 0 0 #fc77b5;
+        }
+    </style>
+</head>
+
+<body class="p-2 pt-0 text-2xl">
+    <main class="flex flex-col -space-y-10 pb-5 pr-5 w-max">
+        <header class="relative flex items-center justify-center px-10 z-10">
+            <section class="bg-[#E34D6C] rounded-t-[40px] rounded-b-[12px] px-8 py-4 flex items-center gap-2 text-white max-w-full">
+                <img data-profile-picture="{{gifterPicture}}" src="{{gifterPicture}}" class="size-8 rounded-full border-white border shrink-0" />
+                <span class="font-black truncate">{{gifterName}}</span>
+                <img id="verified-badge-{{isGifterVerified}}" src="https://assets.tako.id/badges/validated-user.png" alt="" class="size-8 shrink-0" />
+                <div class="flex items-center shrink-0 gap-2 empty:hidden" id="badges"></div>
+            </section>
+        </header>
+
+        <div class="relative bg-white pt-16 px-10 pb-8 gap-3 flex flex-col items-center text-[#514E51] font-bold rounded-[32px] trail-pink">
+            <img src="https://i.snipboard.io/PagN6i.jpg" alt="" class="h-24" />
+            <p class="w-full text-center text-4xl">{{soundName}}</p>
+        </div>
+    </main>
+
+    <script>
+        const badges = "{{gifterBadges}}";
+        const badgeContainer = document.getElementById("badges");
+
+        if (badges && badgeContainer) {
+            badgeContainer.innerHTML += badges
+                .split(",")
+                .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-7 shrink-0" />`)
+                .join(" ");
+        }
+    </script>
+</body>
