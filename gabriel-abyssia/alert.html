@@ -9,10 +9,10 @@
         }
     </style>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Modern+Antiqua&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap");
 
         * {
-            font-family: "Modern Antiqua", serif;
+            font-family: "Josefin Sans", sans-serif;
         }
 
         [data-profile-picture=""] {
@@ -54,7 +54,7 @@
     </style>
 </head>
 
-<body class="px-5 pt-16 pb-0 flex gap-5 overflow-hidden">
+<body class="pt-16 flex gap-5 overflow-hidden">
     <section class="relative h-32 animate-fade-in opacity-0 z-10" style="animation-delay: 0.5s" data-profile-picture="{{gifterPicture}}">
         <div class="relative animate-float z-10">
             <svg class="fill-white h-11 absolute top-0 -right-8 animate-spin" viewBox="0 0 120 120" style="animation-duration: 20s">
@@ -64,7 +64,7 @@
             </svg>
         </div>
 
-        <svg class="h-full fill-none anim animate-spin" viewBox="0 0 503 504" style="animation-duration: 40s">
+        <svg class="h-full fill-none animate-spin" viewBox="0 0 503 504" style="animation-duration: 40s">
             <rect class="stroke-white stroke-[5]" x="1.5" y="2.38086" width="499.357" height="499.357" rx="249.679" stroke-dasharray="15 92" />
         </svg>
 
@@ -98,16 +98,16 @@
                     d="M101.116 23.5016H0.883945C0.671898 23.5016 0.5 23.6729 0.5 23.8841V31.4216C0.5 31.6329 0.671898 31.8041 0.883945 31.8041H101.116C101.328 31.8041 101.5 31.6329 101.5 31.4216V23.8841C101.5 23.6729 101.328 23.5016 101.116 23.5016Z" />
             </svg>
 
-            <div class="flex gap-2 flex-wrap items-center justify-center text-xl">
+            <div class="flex gap-2 flex-wrap items-center justify-center text-2xl">
                 <span>{{formattedAmount}}</span>
-                <span>Dari</span>
+                <span>dari</span>
                 <div id="user" class="flex gap-2 items-center">
                     <h1 class="truncate">{{gifterName}}</h1>
                     <img id="verified-badge-{{isGifterVerified}}" src="https://assets.tako.id/badges/validated-user.png" alt="" class="size-7 shrink-0" />
                 </div>
             </div>
 
-            <p class="text-base">{{message}}</p>
+            <p id="content" class="text-xl leading-snug">{{message}}</p>
         </div>
 
         <div class="relative h-px w-full bg-gradient-to-r from-white/0 via-white to-white/0 grid place-items-center">
@@ -128,5 +128,12 @@
                 .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-7 shrink-0" />`)
                 .join(" ");
         }
+
+        const content = "{{message}}".replace(/\[([a-zA-Z0-9_]+)\]/g, (match, name) => {
+            const url = `https://assets.tako.id/stickers/${name}.png`;
+            return `<img src="${url}" class="align-middle h-9 inline-block"></img>`;
+        });
+
+        document.getElementById("content").innerHTML = content;
     </script>
 </body>

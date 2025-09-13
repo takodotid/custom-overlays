@@ -36,7 +36,7 @@
     </style>
 </head>
 
-<body class="p-8 pb-0 overflow-hidden">
+<body class="py-8 pb-0 overflow-hidden">
     <main class="w-full bg-yellow border-2 border-black flex flex-col relative">
         <header class="flex items-center w-full bg-black p-4 pt-6 text-white">
             <section class="flex flex-col w-[90%]">
@@ -49,12 +49,9 @@
             </section>
         </header>
 
-        <p class="text-xl leading-snug p-4 pb-6 w-[80%] overflow-hidden text-black empty:hidden">{{message}}</p>
+        <p id="content" class="text-xl leading-snug p-4 pb-6 w-[80%] overflow-hidden text-black empty:hidden">{{message}}</p>
 
-        <img
-            src="https://cdn.discordapp.com/attachments/1128249706074607687/1405876189809086506/image.png?ex=68a06bbb&is=689f1a3b&hm=e9ea9309aac06877548943865c72a98d8a601a1258e5951c44a25db8b37f44a5&"
-            alt=""
-            class="absolute -top-10 -right-7 h-[160%] max-h-96 rotate-12" />
+        <img src="https://i.postimg.cc/hX9Dxt06/image.png" alt="" class="absolute -top-10 -right-7 h-[160%] max-h-96 rotate-12" />
     </main>
 
     <script>
@@ -67,5 +64,12 @@
                 .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-7 shrink-0" />`)
                 .join(" ");
         }
+
+        const content = "{{message}}".replace(/\[([a-zA-Z0-9_]+)\]/g, (match, name) => {
+            const url = `https://assets.tako.id/stickers/${name}.png`;
+            return `<img src="${url}" class="align-middle h-9 inline-block"></img>`;
+        });
+
+        document.getElementById("content").innerHTML = content;
     </script>
 </body>

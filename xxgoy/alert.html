@@ -35,10 +35,10 @@
     </style>
 </head>
 
-<body class="p-5 pb-0 flex flex-col items-center overflow-hidden">
+<body class="flex flex-col items-center overflow-hidden">
     <div class="flex rounded-md items-end max-w-[80%]">
         <section class="relative shrink-0 size-52 z-20">
-            <img class="size-full relative z-10" src="https://admin.tako.id/assets/fd96087f-81c6-4183-921e-4adf51b065d5" alt="" />
+            <img class="size-full relative z-10" src="https://i.postimg.cc/svj9bMM9/image.png" alt="" />
 
             <div class="absolute inset-0 size-full bg-theme rounded-full"></div>
         </section>
@@ -63,7 +63,7 @@
     </div>
 
     <div class="relative -mt-0.5 min-w-[700px] z-20">
-        <p class="box relative z-10 bg-black max-w-full overflow-auto border-y-[3px] border-theme py-5 px-16 text-center text-xl leading-9 text-white">{{message}}</p>
+        <p id="content" class="box relative z-10 bg-black max-w-full overflow-auto border-y-[3px] border-theme py-5 px-16 text-center text-xl leading-9 text-white">{{message}}</p>
 
         <section class="box bg-theme absolute size-full inset-0 -translate-x-1"></section>
         <section class="box bg-theme absolute size-full inset-0 translate-x-1"></section>
@@ -79,5 +79,12 @@
                 .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-7 shrink-0" />`)
                 .join(" ");
         }
+
+        const content = "{{message}}".replace(/\[([a-zA-Z0-9_]+)\]/g, (match, name) => {
+            const url = `https://assets.tako.id/stickers/${name}.png`;
+            return `<img src="${url}" class="align-middle h-9 inline-block"></img>`;
+        });
+
+        document.getElementById("content").innerHTML = content;
     </script>
 </body>
