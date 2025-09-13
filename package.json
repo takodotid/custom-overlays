@@ -1,0 +1,55 @@
+{
+    "name": "@takodotid/custom-overlays",
+    "version": "1.0.0",
+    "license": "SEE LICENSE IN LICENSE",
+    "homepage": "https://tako.id",
+    "repository": "https://github.com/takodotid/custom-overlays",
+    "bugs": "https://github.com/takodotid/custom-overlays/issues",
+    "type": "module",
+    "author": {
+        "name": "Tako Developer Team",
+        "email": "developer@tako.id",
+        "url": "https://tako.id"
+    },
+    "maintainers": [
+        {
+            "name": "Rafly Maulana",
+            "email": "rafly@tako.id"
+        }
+    ],
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ],
+        "rules": {
+            "body-max-line-length": [
+                0
+            ]
+        }
+    },
+    "prettier": {
+        "trailingComma": "es5",
+        "bracketSpacing": true,
+        "arrowParens": "always",
+        "endOfLine": "auto",
+        "htmlWhitespaceSensitivity": "css",
+        "bracketSameLine": false,
+        "jsxSingleQuote": false,
+        "printWidth": 200,
+        "semi": true,
+        "tabWidth": 4
+    },
+    "devDependencies": {
+        "@types/bun": "latest",
+        "@commitlint/cli": "^19.8.0",
+        "@commitlint/config-conventional": "^19.8.0",
+        "husky": "^9.1.7",
+        "prettier": "^3.5.3"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "scripts": {
+        "prepare": "husky"
+    }
+}
