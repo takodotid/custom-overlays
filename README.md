@@ -22,11 +22,11 @@ Please follow the instructions below to set up the development environment. For 
 
 ### Prerequisites
 
-1. [Live Share Extension](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare) (for collaborative editing)
+1. [Live Share Extension](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare) (for live html editing & preview)
 2. [Bun](https://bun.sh/) (JavaScript runtime)
 
 ### Setup
 
 1. Run `bun install` to install dependencies.
-2. Start **Live Share** session for live editing and preview.
+2. Start **Live Share**.
 3. Open http://localhost:5500 (or the port specified in the terminal) to view the project in your browser.
