@@ -6,6 +6,10 @@
     "repository": "https://github.com/takodotid/custom-overlays",
     "bugs": "https://github.com/takodotid/custom-overlays/issues",
     "type": "module",
+    "scripts": {
+        "prepare": "husky",
+        "lint": "prettier . --write"
+    },
     "author": {
         "name": "Tako Developer Team",
         "email": "developer@tako.id",
@@ -48,8 +52,5 @@
     },
     "peerDependencies": {
         "typescript": "^5.0.0"
-    },
-    "scripts": {
-        "prepare": "husky"
     }
 }

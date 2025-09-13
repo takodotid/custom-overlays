@@ -11,4 +11,22 @@ This repository holds a collection of custom Tako overlays design for various cr
 
 # Usage, Modification, and Distribution
 
-Please refer to the [LICENSE.md](./LICENSE.md) file for detailed terms regarding usage, modification, and distribution of the contents in this repository.
+> [!CAUTION]
+> Please refer to the [LICENSE.md](./LICENSE.md) file for detailed terms regarding usage, modification, and distribution of the contents in this repository.
+
+In Summary, this repository is public and viewable, but non-commercial use only; forks with notice are allowed, while all modifications, redistributions, or uses require Tako’s approval.
+
+# Development
+
+Please follow the instructions below to set up the development environment. For documentation about Tako's Custom Overlay, please refer to the [Article](https://help.tako.id/en/article/how-to-create-custom-overlay-p27467/).
+
+### Prerequisites
+
+1. [Live Share Extension](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare) (for collaborative editing)
+2. [Bun](https://bun.sh/) (JavaScript runtime)
+
+### Setup
+
+1. Run `bun install` to install dependencies.
+2. Start **Live Share** session for live editing and preview.
+3. Open http://localhost:5500 (or the port specified in the terminal) to view the project in your browser.
