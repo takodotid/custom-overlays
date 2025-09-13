@@ -65,24 +65,36 @@
 
         const currentAmount = "{{formattedCurrentAmount}}";
         const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        const numbers = "0123456789";
         const el = document.getElementById("current");
-
         let frame = 0;
 
         async function animate() {
             let output = "";
+
             for (let i = 0; i < currentAmount.length; i++) {
                 if (frame / 2 > i) {
                     output += currentAmount[i];
                 } else {
-                    output += chars[Math.floor(Math.random() * chars.length)];
+                    if (currentAmount[i] === " ") {
+                        output += " ";
+                    } else if (currentAmount[i] === ",") {
+                        output += ",";
+                    } else if (currentAmount[i] === ".") {
+                        output += ".";
+                    } else if (!isNaN(parseInt(currentAmount[i]))) {
+                        output += numbers[Math.floor(Math.random() * numbers.length)];
+                    } else {
+                        output += chars[Math.floor(Math.random() * chars.length)];
+                    }
                 }
             }
+
             el.textContent = output;
 
             if (frame < currentAmount.length * 2) {
                 frame++;
-                await new Promise((resolve) => setTimeout(resolve, 35));
+                await new Promise((resolve) => setTimeout(resolve, 50));
                 requestAnimationFrame(animate);
             }
         }
