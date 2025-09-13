@@ -10,13 +10,13 @@
 
 This repository is **publicly viewable for learning purposes only**.
 
--   ✅ You can **view** the content.
--   ✅ You can **fork officially on GitHub** if you **notify Tako first**.
--   ✅ You can **experiment personally** and **request special permissions**.
--   ❌ You cannot **use commercially**, **sell**, or **profit** from this content.
--   ❌ You cannot **clone, re-host, or distribute** it without Tako’s approval.
--   🔄 Any modification or derivative work must be **significantly different** (at least 50% changed) and **approved by Tako**.
--   ⚠️ Violating these rules automatically **terminates your rights** to use the content.
+- ✅ You can **view** the content.
+- ✅ You can **fork officially on GitHub** if you **notify Tako first**.
+- ✅ You can **experiment personally** and **request special permissions**.
+- ❌ You cannot **use commercially**, **sell**, or **profit** from this content.
+- ❌ You cannot **clone, re-host, or distribute** it without Tako’s approval.
+- 🔄 Any modification or derivative work must be **significantly different** (at least 50% changed) and **approved by Tako**.
+- ⚠️ Violating these rules automatically **terminates your rights** to use the content.
 
 When in doubt: **ask Tako first** via [help.tako.id](https://help.tako.id) or **[halo@tako.id](mailto:halo@tako.id)**.
 
@@ -34,10 +34,10 @@ The repository is made publicly viewable for **learning purposes only**. Viewing
 
 You may:
 
--   View the Content freely.
--   Fork this repository **officially on GitHub** (or equivalent platforms) **only if** you notify Tako’s team through [help.tako.id](https://help.tako.id) or **[halo@tako.id](mailto:halo@tako.id)**, and you follow the rules below.
--   Modify the Content for personal learning and experimentation.
--   Request special permission from Tako to use the Content beyond these terms.
+- View the Content freely.
+- Fork this repository **officially on GitHub** (or equivalent platforms) **only if** you notify Tako’s team through [help.tako.id](https://help.tako.id) or **[halo@tako.id](mailto:halo@tako.id)**, and you follow the rules below.
+- Modify the Content for personal learning and experimentation.
+- Request special permission from Tako to use the Content beyond these terms.
 
 ---
 
@@ -48,7 +48,6 @@ You may **not**:
 1. **Use the Content commercially** in any way. This includes selling, sublicensing, bundling with paid services, or generating profit (directly or indirectly).
 2. **Distribute** the Content (or any derivative work) **without prior written permission** from Tako.
 3. **Clone, fork, or re-host** this repository outside of official platforms **without notifying and obtaining permission** from Tako.
-
     - Any fork, clone, or re-host made without notice is considered **an unauthorized copy**.
 
 4. **Sublicense, relicense, or transfer** this Content to others.
@@ -60,9 +59,9 @@ You may **not**:
 
 Any derivative or modified work **must substantially differ** from the original.
 
--   Minor edits or slight cosmetic changes are **not sufficient**.
--   As a guideline, modifications should alter **at least 50% of the original design/structure** to ensure originality.
--   **Tako is the sole authority** to determine whether a modification qualifies as substantial.
+- Minor edits or slight cosmetic changes are **not sufficient**.
+- As a guideline, modifications should alter **at least 50% of the original design/structure** to ensure originality.
+- **Tako is the sole authority** to determine whether a modification qualifies as substantial.
 
 ---
 
@@ -70,8 +69,8 @@ Any derivative or modified work **must substantially differ** from the original.
 
 Before using, modifying, or distributing the Content (including derivatives), you must:
 
--   Notify Tako through [help.tako.id](https://help.tako.id) or **[halo@tako.id](mailto:halo@tako.id)**, and
--   Receive confirmation or approval from Tako.
+- Notify Tako through [help.tako.id](https://help.tako.id) or **[halo@tako.id](mailto:halo@tako.id)**, and
+- Receive confirmation or approval from Tako.
 
 Tako may grant exceptions, waivers, or special permissions at its discretion.
 
@@ -89,16 +88,16 @@ Nothing in this license grants you rights to use the trademarks, logos, or brand
 
 This license and all granted rights **automatically terminate** if you violate any of its terms, including (but not limited to):
 
--   Unauthorized commercial use.
--   Unauthorized redistribution, cloning, or forking without notice.
--   Failure to notify Tako before use, modification, or distribution.
--   Creating derivative works that do not meet the originality requirement.
+- Unauthorized commercial use.
+- Unauthorized redistribution, cloning, or forking without notice.
+- Failure to notify Tako before use, modification, or distribution.
+- Creating derivative works that do not meet the originality requirement.
 
 Upon termination:
 
--   You must immediately stop all use, modification, and distribution of the Content.
--   You must delete all unauthorized copies of the Content in your possession.
--   Continued use after termination may result in legal action.
+- You must immediately stop all use, modification, and distribution of the Content.
+- You must delete all unauthorized copies of the Content in your possession.
+- Continued use after termination may result in legal action.
 
 ---
 
