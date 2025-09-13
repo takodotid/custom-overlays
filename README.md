@@ -1,4 +1,4 @@
-# Tako's Custom Overlay
+# Custom Tako Overlay Collection
 
 This repository holds a collection of custom Tako overlays design for various creators and streamers. These overlays are designed to enhance the visual appeal of live streams and provide a unique branding experience.
 
