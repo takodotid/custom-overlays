@@ -9,7 +9,7 @@
             font-family: "Poppins", sans-serif;
         }
 
-        [data-profile-picture=""] {
+        #profile-picture[src=""] {
             display: none;
         }
 
@@ -20,14 +20,78 @@
         .trail-pink {
             box-shadow: 16px 16px 0 0 #fc77b5;
         }
+
+        @keyframes scale-up {
+            0% {
+                transform: scaleY(0);
+            }
+            100% {
+                transform: scaleY(1);
+            }
+        }
+
+        .animate-scale-up {
+            animation: scale-up 0.5s ease-in-out;
+        }
+
+        @keyframes tada {
+            from {
+                transform: scale3d(1, 1, 1);
+            }
+
+            10%,
+            20% {
+                transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+            }
+
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+            }
+
+            40%,
+            60%,
+            80% {
+                transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+            }
+
+            to {
+                transform: scale3d(1, 1, 1);
+            }
+        }
+
+        .animate-tada {
+            animation: tada 1s;
+        }
+
+        @keyframes jump-fade {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-jump-fade {
+            animation: jump-fade 0.5s ease-in-out;
+        }
     </style>
 </head>
 
 <body class="p-2 pt-0 text-2xl">
     <main class="flex flex-col -space-y-10 pb-5 pr-5 w-max">
         <header class="relative flex items-center justify-center px-10 z-10">
-            <section class="bg-[#E34D6C] rounded-t-[40px] rounded-b-[12px] px-8 py-4 flex items-center gap-2 text-white max-w-full">
-                <img data-profile-picture="{{gifterPicture}}" src="{{gifterPicture}}" class="size-8 rounded-full border-white border shrink-0" />
+            <section class="bg-[#E34D6C] rounded-t-[40px] rounded-b-[12px] px-8 py-4 flex items-center gap-2 text-white max-w-full animate-scale-up origin-bottom">
+                <img id="profile-picture" src="{{gifterPicture}}" class="size-8 rounded-full border-white border shrink-0" />
                 <span class="font-black truncate">{{gifterName}}</span>
                 <img id="verified-badge-{{isGifterVerified}}" src="https://assets.tako.id/badges/validated-user.png" alt="" class="size-8 shrink-0" />
                 <div class="flex items-center shrink-0 gap-2 empty:hidden" id="badges"></div>
@@ -35,8 +99,8 @@
         </header>
 
         <div class="relative bg-white pt-16 px-10 pb-8 gap-3 flex flex-col items-center text-[#514E51] font-bold rounded-[32px] trail-pink">
-            <img src="https://i.snipboard.io/PagN6i.jpg" alt="" class="h-24" />
-            <p class="w-full text-center text-4xl">{{soundName}}</p>
+            <img src="https://i.snipboard.io/PagN6i.jpg" alt="" class="relative h-24 z-10 animate-tada" />
+            <p id="title" class="w-full text-center text-4xl">{{soundName}}</p>
         </div>
     </main>
 
@@ -49,6 +113,21 @@
                 .split(",")
                 .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-7 shrink-0" />`)
                 .join(" ");
+        }
+
+        const title = document.getElementById("title");
+
+        if (title) {
+            const text = title.textContent;
+            title.textContent = "";
+
+            [...text].forEach((char, index) => {
+                const span = document.createElement("span");
+                span.textContent = char;
+                span.style.animationDelay = `${index * 0.05}s`;
+                span.classList.add("inline-block", "animate-jump-fade");
+                title.appendChild(span);
+            });
         }
     </script>
 </body>

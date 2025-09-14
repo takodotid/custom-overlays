@@ -24,25 +24,45 @@
         .target-0 {
             display: none;
         }
+
+        @keyframes jump-fade {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-jump-fade {
+            animation: jump-fade 0.5s ease-in-out;
+        }
     </style>
 </head>
 
 <body class="p-2 pt-0 text-2xl">
     <main class="flex flex-col -space-y-10 pb-5 pr-5">
         <header class="relative flex pl-10 pr-20 z-10">
-            <section class="bg-[#E34D6C] rounded-t-[40px] rounded-b-[12px] px-8 py-4 flex items-center gap-2 text-white max-w-full font-black truncate">{{title}}</section>
+            <p id="title" class="bg-[#E34D6C] rounded-t-[40px] rounded-b-[12px] px-8 py-4 text-white max-w-full font-black truncate">{{title}}</p>
         </header>
 
         <div class="relative bg-white pt-16 px-10 pb-8 gap-5 flex flex-col items-center text-[#514E51] font-bold rounded-[32px] trail-pink">
             <section class="w-full h-8 bg-[#E34D6C]/20 rounded-full target-{{currentAmount}}">
-                <div id="total" class="bg-[#E34D6C] rounded-full h-full relative duration-200">
-                    <img src="https://i.snipboard.io/PagN6i.jpg" alt="" class="h-14 absolute -top-1/2 translate-y-1 right-0 translate-x-1/2 z-50" />
+                <div id="total" class="bg-[#E34D6C] rounded-full h-full relative duration-1000">
+                    <img src="https://i.snipboard.io/PagN6i.jpg" alt="" class="h-14 min-w-max absolute right-0 -top-1/2 translate-x-1/2 translate-y-1 z-50" />
                 </div>
             </section>
 
             <p class="w-full text-center">
-                <span id="current"></span>
-                <span class="target-{{currentAmount}}"> / {{formattedTargetAmount}}</span>
+                <span id="current" class="font-extrabold"></span>
+                <span class="target-{{currentAmount}}"> / </span>
+                <span class="target-{{currentAmount}} text-[#E34D6C] font-semibold">{{formattedTargetAmount}}</span>
             </p>
         </div>
     </main>
@@ -59,12 +79,20 @@
             percentage = 0;
         }
 
+        if (isNaN(percentage)) {
+            percentage = 50;
+        }
+
         if (total) {
-            total.style.width = percentage + "%";
+            /* Start from 10% less than the target percentage for a smoother animation */
+            total.style.width = Math.max(percentage - 10, 0) + "%";
+
+            /* Animate to the target percentage */
+            setTimeout(() => (total.style.width = percentage + "%"), 100);
         }
 
         const currentAmount = "{{formattedCurrentAmount}}";
-        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         const numbers = "0123456789";
         const el = document.getElementById("current");
         let frame = 0;
@@ -100,5 +128,20 @@
         }
 
         animate();
+
+        const title = document.getElementById("title");
+
+        if (title) {
+            const text = title.textContent;
+            title.textContent = "";
+
+            [...text].forEach((char, index) => {
+                const span = document.createElement("span");
+                span.innerHTML = char === " " ? "&nbsp;" : char;
+                span.style.animationDelay = `${index * 0.05}s`;
+                span.classList.add("inline-block", "animate-jump-fade");
+                title.appendChild(span);
+            });
+        }
     </script>
 </body>
