@@ -15,7 +15,7 @@
             font-family: "Montserrat", sans-serif;
         }
 
-        [data-profile-picture=""] {
+        #profile-picture[src=""] {
             display: none;
         }
 
@@ -45,7 +45,7 @@
 
         <section class="relative min-w-96 -ml-10">
             <div class="header relative z-10 bg-black flex gap-3 items-center text-white px-16 py-8 border-y-[3px] border-theme">
-                <img data-profile-picture="{{gifterPicture}}" src="{{gifterPicture}}" class="size-16 rounded-full bg-white border-theme border" />
+                <img id="profile-picture" src="{{gifterPicture}}" class="size-16 rounded-full bg-white border-theme border" />
 
                 <section class="flex flex-col w-[90%]">
                     <div id="user" class="flex gap-2 items-center">
