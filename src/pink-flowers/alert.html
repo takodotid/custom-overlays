@@ -1,0 +1,146 @@
+<html>
+    <head>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+            body {
+                padding: 0 25px 16px 25px;
+                margin: 0;
+                font-family: "DynaPuff", sans-serif;
+                background: none;
+                overflow: hidden;
+            }
+            .box {
+                --bg-color: #ea63b4;
+                --bg-strip: #dd1c9c;
+                gap: 15px;
+                padding: 0 0 20px 0;
+                background: linear-gradient(
+                    60deg,
+                    var(--bg-color) 10%,
+                    var(--bg-strip) 10%,
+                    var(--bg-strip) 20%,
+                    var(--bg-color) 20%,
+                    var(--bg-color) 25%,
+                    var(--bg-strip) 25%,
+                    var(--bg-strip) 30%,
+                    var(--bg-color) 30%,
+                    var(--bg-color) 70%,
+                    var(--bg-strip) 70%,
+                    var(--bg-strip) 80%,
+                    var(--bg-color) 80%,
+                    var(--bg-color) 85%,
+                    var(--bg-strip) 85%,
+                    var(--bg-strip) 90%,
+                    var(--bg-color) 90%
+                );
+                background-repeat: no-repeat;
+                border: 3px solid #ca138d;
+                border-radius: 10px;
+                text-align: center;
+                box-shadow: 6px 6px 0 #810d5b;
+                position: relative;
+            }
+            .box::after {
+                content: "";
+                position: absolute;
+                width: 108%;
+                height: 100%;
+                background:
+                    url("https://png.pngtree.com/png-vector/20231108/ourmid/pngtree-pink-flower-cute-png-image_10448174.png"),
+                    url("https://png.pngtree.com/png-clipart/20250507/original/pngtree-pink-flower-png-png-image_20939317.png");
+                background-repeat: no-repeat;
+                background-position:
+                    left center,
+                    right center;
+                background-size: 70px, 70px;
+                filter: drop-shadow(6px 6px 0 #810d5b);
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            h2 {
+                position: relative;
+                left: 0;
+                color: #f0e552;
+                font-family: "IBM Plex Sans";
+                font-size: 22px;
+                font-weight: 600;
+                padding: 6px 20px;
+                border-radius: 6px;
+                margin: 0;
+                background: #dd1c9c;
+                gap: 7px;
+                vertical-align: middle;
+            }
+            h2 > span {
+                font-weight: 500;
+            }
+            .pesan {
+                margin: 0;
+                color: #e7e9ed;
+                font-size: 22px;
+                text-align: center;
+                padding: 20px 32px 0 32px;
+            }
+
+            #profile-picture[src=""] {
+                display: none;
+            }
+
+            #verified-badge-false {
+                display: none;
+            }
+            .icon {
+                flex-shrink: 0;
+                width: 24px;
+                height: 24px;
+                vertical-align: middle;
+            }
+            #badges:empty {
+                display: none;
+            }
+            #badges > :not([hidden]) ~ :not([hidden]) {
+                --tw-space-x-reverse: 0;
+                margin-right: calc(0.25rem /* 4px */ * var(--tw-space-x-reverse));
+                margin-left: calc(0.25rem /* 4px */ * calc(1 - var(--tw-space-x-reverse)));
+            }
+            #profile-picture {
+                border-radius: 99999px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="box">
+            <h2>
+                <span>{{formattedAmount}}</span>
+                <span>dari</span>
+                <img id="profile-picture" src="{{gifterPicture}}" class="icon" />
+                <span>{{gifterName}}</span>
+                <img id="verified-badge-{{isGifterVerified}}" src="https://assets.tako.id/badges/validated-user.png" alt="" class="icon" />
+                <span id="badges"></span>
+            </h2>
+            <p id="content" class="pesan">{{message}}</p>
+        </div>
+
+        <script>
+            const badges = "{{gifterBadges}}";
+            const badgeContainer = document.getElementById("badges");
+
+            if (badges && badgeContainer) {
+                badgeContainer.innerHTML += badges
+                    .split(",")
+                    .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="icon" />`)
+                    .join(" ");
+            }
+
+            const content = document.getElementById("content").textContent.replace(/\[([a-zA-Z0-9_]+)\]/g, (match, name) => {
+                const url = `https://assets.tako.id/stickers/${name}.png`;
+                return `<img src="${url}" class="icon"></img>`;
+            });
+
+            document.getElementById("content").innerHTML = content;
+        </script>
+    </body>
+</html>

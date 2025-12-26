@@ -1,0 +1,88 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Jersey+10&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+        .font-bbh {
+            font-family: "Rubik", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+
+        .font-jersey10 {
+            font-family: "Jersey 10", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            letter-spacing: 0.06em;
+        }
+
+        .box {
+            box-shadow:
+                -4px -4px 3px 0 rgba(0, 0, 0, 0.25) inset,
+                2px 2px 2px 0 #fff inset;
+        }
+
+        #profile-picture[src=""] {
+            display: none;
+        }
+
+        #verified-badge-false {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="p-1">
+    <main class="bg-[#C8CAD3] p-1 box">
+        <header class="bg-[#1C2397] flex justify-between items-center text-white px-3 py-1">
+            <p class="font-jersey10 text-xl">Donation Alert!</p>
+
+            <div class="bg-[#C8CAD3] p-1 h-5 box">
+                <svg class="size-full fill-black" viewBox="0 0 17 17">
+                    <path d="M2.79546e-05 2.12132L2.12135 0L16.2635 14.1421L14.1422 16.2635L2.79546e-05 2.12132Z" />
+                    <path d="M16.2635 2.12132L14.1421 0L0 14.1421L2.12132 16.2635L16.2635 2.12132Z" />
+                </svg>
+            </div>
+        </header>
+
+        <section class="py-5 px-5 flex flex-col text-center items-center justify-center text-2xl font-bbh gap-1">
+            <section id="header" data-is-verified="{{isGifterVerified}}" class="flex items-center gap-2 max-w-full">
+                <span class="font-extrabold text-[#1C2397] shrink-0">{{formattedAmount}}</span>
+                <img id="verified-badge-{{isGifterVerified}}" src="https://assets.tako.id/badges/validated-user.png" alt="" class="size-6 shrink-0" />
+                <div class="flex items-center shrink-0 gap-2 empty:hidden" id="badges"></div>
+                <span class="font-bold">dari</span>
+                <img id="profile-picture" src="{{gifterPicture}}" class="size-6 rounded-full border-white border shrink-0" />
+                <span class="font-bold truncate">{{gifterName}}</span>
+            </section>
+
+            <p id="content" class="leading-normal empty:before:content-['Tidak_Ada_Pesan']">{{message}}</p>
+
+            <div class="flex gap-5 *:px-5 *:py-1 text-xl *:min-w-40 font-jersey10 pt-3">
+                <button class="box">OK</button>
+                <button class="box">Cancel</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const badges = "{{gifterBadges}}";
+        const badgeContainer = document.getElementById("badges");
+
+        if (badges && badgeContainer) {
+            badgeContainer.innerHTML += badges
+                .split(",")
+                .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-7 shrink-0" />`)
+                .join(" ");
+        }
+
+        const content = document.getElementById("content").textContent.replace(/\[([a-zA-Z0-9_]+)\]/g, (match, name) => {
+            const url = `https://assets.tako.id/stickers/${name}.png`;
+            return `<img src="${url}" class="align-middle h-9 inline-block"></img>`;
+        });
+
+        document.getElementById("content").innerHTML = content;
+        document.documentElement.style.fontSize = "18px";
+    </script>
+</body>
