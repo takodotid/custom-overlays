@@ -1,0 +1,59 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+        * {
+            font-family: "Poppins", sans-serif;
+        }
+
+        #profile-picture[src=""] {
+            display: none;
+        }
+
+        #verified-badge-false {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="py-10 px-2 text-2xl overflow-hidden">
+    <section class="w-full border-6 border-white rounded-[48px]">
+        <main class="relative flex flex-col py-8 pr-8 pl-32 border-[#FEC8D8] rounded-[40px] border-8 gap-3 bg-[#ffdae5] bg-[url('https://snipboard.io/tEvVk9.jpg')] bg-cover bg-center">
+            <img src="https://i.snipboard.io/cqgxkm.jpg" alt="" class="h-48 scale-150 absolute -top-12 left-0" />
+
+            <section id="header" class="flex items-center gap-2 max-w-full text-[#ec88a3]">
+                <span class="font-extrabold shrink-0">{{formattedAmount}}</span>
+                <img id="verified-badge-{{isGifterVerified}}" src="https://assets.tako.id/badges/validated-user.png" alt="" class="size-6 shrink-0" />
+                <div class="flex items-center shrink-0 gap-2 empty:hidden" id="badges"></div>
+                <span class="font-bold">dari</span>
+                <img id="profile-picture" src="{{gifterPicture}}" class="size-6 rounded-full border-white border shrink-0" />
+                <span class="font-bold truncate">{{gifterName}}</span>
+            </section>
+
+            <p id="content" class="leading-normal empty:before:content-['Tidak_Ada_Pesan'] text-[#ec88a3]">{{message}}</p>
+        </main>
+    </section>
+
+    <script>
+        const badges = "{{gifterBadges}}";
+        const badgeContainer = document.getElementById("badges");
+
+        if (badges && badgeContainer) {
+            badgeContainer.innerHTML += badges
+                .split(",")
+                .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-7 shrink-0" />`)
+                .join(" ");
+        }
+
+        const content = document.getElementById("content").textContent.replace(/\[([a-zA-Z0-9_]+)\]/g, (match, name) => {
+            const url = `https://assets.tako.id/stickers/${name}.png`;
+            return `<img src="${url}" class="align-middle h-9 inline-block"></img>`;
+        });
+
+        document.getElementById("content").innerHTML = content;
+        document.documentElement.style.fontSize = "16px";
+    </script>
+</body>
