@@ -27,10 +27,10 @@
             <section id="header" class="flex items-center gap-2 max-w-full text-[#ec88a3]">
                 <span class="font-extrabold shrink-0">{{formattedAmount}}</span>
                 <img id="verified-badge-{{isGifterVerified}}" src="https://assets.tako.id/badges/validated-user.png" alt="" class="size-6 shrink-0" />
-                <div class="flex items-center shrink-0 gap-2 empty:hidden" id="badges"></div>
                 <span class="font-bold">dari</span>
                 <img id="profile-picture" src="{{gifterPicture}}" class="size-6 rounded-full border-white border shrink-0" />
                 <span class="font-bold truncate">{{gifterName}}</span>
+                <div class="flex items-center shrink-0 gap-2 empty:hidden" id="badges"></div>
             </section>
 
             <p id="content" class="leading-normal empty:before:content-['Tidak_Ada_Pesan'] text-[#ec88a3]">{{message}}</p>
