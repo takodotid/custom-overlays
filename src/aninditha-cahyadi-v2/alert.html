@@ -1,0 +1,84 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+        * {
+            font-family: "Poppins", sans-serif;
+        }
+
+        #profile-picture[src=""] {
+            display: none;
+        }
+
+        #verified-badge-false {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="py-10 px-2 text-2xl overflow-hidden">
+    <section class="w-full relative overflow-visible">
+
+        <!-- Bubbles -->
+        <div class="absolute size-full z-20">
+            <img class="size-14 rounded-full absolute -top-10 left-80" src="https://i.ibb.co.com/j94C45xD/bubble.png">
+            <img class="size-10 rounded-full absolute -top-4 right-30" src="https://i.ibb.co.com/j94C45xD/bubble.png">
+            <img class="size-24 rounded-full absolute -top-10 right-4" src="https://i.ibb.co.com/j94C45xD/bubble.png">
+            
+        </div>
+
+        <main style="background-color: rgba(237, 235, 236, 0.5);" class="relative flex flex-col py-20 pr-8 pl-32 border-[#FCECEF] rounded-[80px] z-30 border-8 gap-3 ml-40 mt-4">
+            <div class="absolute bg-cover bg-center w-full h-full inset-x-0 rounded-[80px] inset-y-0 z-0 bg-[url('https://i.ibb.co.com/qMYqWX2b/clouds.png')] "></div>
+            
+            
+            <div class="relative inset-y-0 -top-10 -left-32">
+                <img src="https://i.ibb.co.com/h1Wt7015/Chat-GPT-Image-May-26-2026-05-24-20-PM-1.png"
+                    class="size-[20rem] aspect-square rounded-full absolute inset-y-0 -top-16 -left-32">
+
+                <div class="absolute size-full z-40">
+                    <img class="size-24 rounded-full absolute -left-32 top-38" src="https://i.ibb.co.com/j94C45xD/bubble.png">
+                    <img class="size-10 rounded-full absolute -left-13 top-54" src="https://i.ibb.co.com/j94C45xD/bubble.png">
+                    <img class="size-12 rounded-full absolute -left-40 top-0" src="https://i.ibb.co.com/j94C45xD/bubble.png">
+                </div>
+                
+                <img class="size-[21rem] absolute rounded-full inset-y-0 -top-18 -left-35 opacity-30 z-50" src="https://i.ibb.co.com/j94C45xD/bubble.png">
+            </div>
+
+            <div class="pl-16 z-50 space-y-2">
+                <section id="header" class="flex items-center text-2xl gap-2 max-w-full text-[#791B39] z-20">
+                    <span class="font-extrabold shrink-0">{{formattedAmount}}</span>
+                    <img id="verified-badge-{{isGifterVerified}}" src="https://assets.tako.id/badges/validated-user.png" alt="" class="size-6 shrink-0" />
+                    <span class="font-bold">dari</span>
+                    <img id="profile-picture" src="{{gifterPicture}}" class="size-6 rounded-full border-white border shrink-0" />
+                    <span class="font-bold truncate">{{gifterName}}</span>
+                    <div class="flex items-center shrink-0 gap-2 empty:hidden" id="badges"></div>
+                </section>
+
+                <p id="content" class="leading-normal empty:before:content-['Tidak_Ada_Pesan'] text-[#791B39] text-lg">{{message}}</p>
+            </div>
+        </main>
+    </section>
+
+    <script>
+        const badges = "{{gifterBadges}}";
+        const badgeContainer = document.getElementById("badges");
+
+        if (badges && badgeContainer) {
+            badgeContainer.innerHTML += badges
+                .split(",")
+                .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-7 shrink-0" />`)
+                .join(" ");
+        }
+
+        const content = document.getElementById("content").textContent.replace(/\[([a-zA-Z0-9_]+)\]/g, (match, name) => {
+            const url = `https://assets.tako.id/stickers/${name}.png`;
+            return `<img src="${url}" class="align-middle h-9 inline-block"></img>`;
+        });
+
+        document.getElementById("content").innerHTML = content;
+        document.documentElement.style.fontSize = "16px";
+    </script>
+</body>
