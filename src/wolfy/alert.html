@@ -7,7 +7,6 @@
 
         body {
             font-family: "Open Sans", sans-serif;
-            background-color: #000000;
         }
 
         .font-orbitron {
@@ -22,10 +21,13 @@
         #verified-badge-false {
             display: none;
         }
+        .svg-white {
+            filter: brightness(0) invert(1);
+        }
     </style>
 </head>
 
-<body class="pt-28 pb-10 px-2 h-auto">
+<body class="pt-28 pb-10 pr-20 h-auto w-[800px] overflow-hidden">
     <section class="relative w-full">
         <!-- Wolfy character floating above the frame -->
         <img src="https://lh3.googleusercontent.com/d/143avirUhym-kc74JZRxX1VDyR4nty6nm"
@@ -34,9 +36,9 @@
 
         <!-- Top-center accent slashes -->
         <img src="https://lh3.googleusercontent.com/d/1Hpqv4M3tLEmO9yL357YvymjwhFMTOacL"
-            class="absolute left-[160px] -top-[6px] w-[49px] h-[11px] z-30 pointer-events-none" alt="" />
+            class="absolute left-[160px] -top-[6px] w-[49px] h-[11px] z-30 pointer-events-none svg-white" alt="" />
         <img src="https://lh3.googleusercontent.com/d/1Hpqv4M3tLEmO9yL357YvymjwhFMTOacL"
-            class="absolute right-[160px] -bottom-[6px] w-[49px] h-[11px] z-30 pointer-events-none rotate-180" alt="" />
+            class="absolute right-[160px] -bottom-[6px] w-[49px] h-[11px] z-30 pointer-events-none rotate-180 svg-white" alt="" />
 
         <!-- Corners -->
         <img src="https://lh3.googleusercontent.com/d/1zvIhtyb8LnpFWV3IYOgITUfQiaVku581"
@@ -49,7 +51,7 @@
             class="absolute -left-[13px] -bottom-[16px] w-[63px] h-auto z-20 pointer-events-none" alt="" />
 
         <!-- Main alert frame -->
-        <main class="relative rounded-3xl border-[6px] border-[#FDFDFD] px-14 py-5 flex flex-col gap-4 items-center justify-start"
+        <main class="relative rounded-3xl border-[6px] min-h-[180px] border-[#FDFDFD] px-14 py-5 flex flex-col gap-4 items-center justify-start"
             style="background-image: linear-gradient(90deg, rgba(3, 110, 180, 0.55) 0%, rgba(131, 0, 9, 0.55) 100%), linear-gradient(90deg, #000 0%, #000 100%); background-clip: padding-box;">
 
             <!-- Header line -->
