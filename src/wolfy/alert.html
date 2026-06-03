@@ -1,0 +1,96 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Open+Sans:wght@400;500;600&display=swap");
+
+        body {
+            font-family: "Open Sans", sans-serif;
+            background-color: #000000;
+        }
+
+        .font-orbitron {
+            font-family: "Orbitron", sans-serif;
+            letter-spacing: 0.02em;
+        }
+
+        #profile-picture[src=""] {
+            display: none;
+        }
+
+        #verified-badge-false {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="pt-28 pb-10 px-2 h-auto">
+    <section class="relative w-full">
+        <!-- Wolfy character floating above the frame -->
+        <img src="https://lh3.googleusercontent.com/d/143avirUhym-kc74JZRxX1VDyR4nty6nm"
+            class="absolute left-1/2 -translate-x-1/2 -top-[112px] size-[144px] object-contain z-30 pointer-events-none"
+            alt="" />
+
+        <!-- Top-center accent slashes -->
+        <img src="https://lh3.googleusercontent.com/d/1Hpqv4M3tLEmO9yL357YvymjwhFMTOacL"
+            class="absolute left-[160px] -top-[6px] w-[49px] h-[11px] z-30 pointer-events-none" alt="" />
+        <img src="https://lh3.googleusercontent.com/d/1Hpqv4M3tLEmO9yL357YvymjwhFMTOacL"
+            class="absolute right-[160px] -bottom-[6px] w-[49px] h-[11px] z-30 pointer-events-none rotate-180" alt="" />
+
+        <!-- Corners -->
+        <img src="https://lh3.googleusercontent.com/d/1zvIhtyb8LnpFWV3IYOgITUfQiaVku581"
+            class="absolute -right-[20px] -bottom-[12px] w-[113px] h-auto z-20 pointer-events-none" alt="" />
+        <img src="https://lh3.googleusercontent.com/d/1AyyXvTe2JVQ71H6AyAuOJX-ZbRNQHQQi"
+            class="absolute -left-[20px] -top-[12px] w-[113px] h-auto z-20 pointer-events-none" alt="" />
+        <img src="https://lh3.googleusercontent.com/d/1_No1WVGIzNHURj7fL5N4tP1cl4np_0J_"
+            class="absolute -right-[14px] -top-[16px] w-[63px] h-auto z-20 pointer-events-none" alt="" />
+        <img src="https://lh3.googleusercontent.com/d/1nMbTNonx0O9dF0nQVmGSvaazgepS3Qrr"
+            class="absolute -left-[13px] -bottom-[16px] w-[63px] h-auto z-20 pointer-events-none" alt="" />
+
+        <!-- Main alert frame -->
+        <main class="relative rounded-3xl border-[6px] border-[#FDFDFD] px-14 py-5 flex flex-col gap-4 items-center justify-start"
+            style="background-image: linear-gradient(90deg, rgba(3, 110, 180, 0.55) 0%, rgba(131, 0, 9, 0.55) 100%), linear-gradient(90deg, #000 0%, #000 100%); background-clip: padding-box;">
+
+            <!-- Header line -->
+            <section id="header"
+                class="relative z-10 font-orbitron font-bold text-white text-[24px] flex items-center justify-center gap-3 flex-wrap leading-none w-full">
+                <span class="shrink-0">&gt; {{formattedAmount}} DARI</span>
+                <img id="profile-picture" src="{{gifterPicture}}"
+                    class="size-6 rounded-full border border-white shrink-0 object-cover bg-[#a93646]" alt="" />
+                <span class="shrink-0 truncate uppercase">{{gifterName}}</span>
+                <img id="verified-badge-{{isGifterVerified}}"
+                    src="https://assets.tako.id/badges/validated-user.png" alt="" class="size-6 shrink-0" />
+                <div class="flex items-center shrink-0 gap-2 empty:hidden" id="badges"></div>
+                <span class="shrink-0">&lt;</span>
+            </section>
+
+            <!-- Message body -->
+            <aside class="relative flex-1 w-full flex items-start justify-center">
+                <p id="content"
+                class="text-white text-[22px] leading-snug text-center size-full empty:before:content-['Tidak_Ada_Pesan']">
+                {{message}}</p>
+            </aside>
+        </main>
+    </section>
+
+    <script>
+        const badges = "{{gifterBadges}}";
+        const badgeContainer = document.getElementById("badges");
+
+        if (badges && badgeContainer) {
+            badgeContainer.innerHTML += badges
+                .split(",")
+                .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-7 shrink-0" />`)
+                .join(" ");
+        }
+
+        const content = document.getElementById("content").textContent.replace(/\[([a-zA-Z0-9_]+)\]/g, (match, name) => {
+            const url = `https://assets.tako.id/stickers/${name}.png`;
+            return `<img src="${url}" class="align-middle h-9 inline-block"></img>`;
+        });
+
+        document.getElementById("content").innerHTML = content;
+        document.documentElement.style.fontSize = "16px";
+    </script>
+</body>
