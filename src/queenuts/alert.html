@@ -1,0 +1,81 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Arial+Black&display=swap");
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .font-arial-black {
+            font-family: "Arial Black", Arial, sans-serif;
+            font-weight: 900;
+        }
+
+        #profile-picture[src=""] {
+            display: none;
+        }
+
+        #verified-badge-false {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="py-6 pl-2 pr-4 h-auto max-w-[800px] overflow-hidden">
+    <section class="relative max-w-[800px]">
+        <!-- Ornament -->
+         <img src="https://lh3.googleusercontent.com/d/16kNYh63mGObVudPPe3D7vj-rr3N4jyWL"
+            class="absolute -left-2 -top-4 w-[90px] z-30 pointer-events-none"
+            alt="" />
+         <img src="https://lh3.googleusercontent.com/d/1VMRa9Zohtea16mX2ee8bMr6eh6y_ESP7"
+            class="absolute -right-4 -bottom-7 w-[345px] z-30 pointer-events-none"
+            alt="" />
+
+        <!-- Main alert frame -->
+        <main class="bg-[#f696a4] rounded-3xl px-14 py-10 flex flex-col gap-3 items-start justify-center w-full"
+            style="box-shadow: 12px 12px 0px 0px #8b4851;">
+
+            <!-- Message body -->
+            <p id="content"
+                class="font-arial-black text-[#f7fffe] text-[24px] leading-normal break-words empty:before:content-['Tidak_Ada_Pesan']">
+                {{message}}</p>
+
+            <!-- Amount + gifter row -->
+            <section class="flex items-center gap-2">
+                <p class="font-bold text-[#99ff66] text-[24px] whitespace-nowrap shrink-0">{{formattedAmount}}</p>
+                <div class="flex items-center gap-2 shrink-0">
+                    <img id="profile-picture" src="{{gifterPicture}}"
+                        class="size-6 rounded-full border border-white shrink-0 object-cover bg-[#a93646]" alt="" />
+                    <p class="font-bold text-[#f7fffe] text-[24px] tracking-[-0.48px] whitespace-nowrap shrink-0"
+                        style="letter-spacing: -0.48px;">{{gifterName}}</p>
+                    <img id="verified-badge-{{isGifterVerified}}"
+                        src="https://assets.tako.id/badges/validated-user.png" alt="" class="size-6 shrink-0" />
+                    <div class="flex items-center shrink-0 gap-2 empty:hidden" id="badges"></div>
+                </div>
+            </section>
+        </main>
+    </section>
+
+    <script>
+        const badges = "{{gifterBadges}}";
+        const badgeContainer = document.getElementById("badges");
+
+        if (badges && badgeContainer) {
+            badgeContainer.innerHTML += badges
+                .split(",")
+                .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-6 shrink-0" />`)
+                .join(" ");
+        }
+
+        const content = document.getElementById("content").textContent.replace(/\[([a-zA-Z0-9_]+)\]/g, (match, name) => {
+            const url = `https://assets.tako.id/stickers/${name}.png`;
+            return `<img src="${url}" class="align-middle h-9 inline-block"></img>`;
+        });
+
+        document.getElementById("content").innerHTML = content;
+        document.documentElement.style.fontSize = "16px";
+    </script>
+</body>
