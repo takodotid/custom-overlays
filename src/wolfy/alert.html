@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Open+Sans:wght@400;500;600&display=swap");
+         @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Open+Sans:wght@400;500;600&display=swap");
 
         body {
             font-family: "Open Sans", sans-serif;
@@ -21,15 +21,16 @@
         #verified-badge-false {
             display: none;
         }
+
         .svg-white {
             filter: brightness(0) invert(1);
         }
     </style>
 </head>
 
-<body class="pt-28 pb-10 pr-20 h-auto w-[800px] overflow-hidden">
-    <section class="relative w-full">
-        <!-- Wolfy character floating above the frame -->
+<body class="pt-26 pl-2 pr-2 h-auto max-w-[800px] overflow-hidden">
+    <section class="relative max-w-[800px]">
+       <!-- Wolfy character floating above the frame -->
         <img src="https://lh3.googleusercontent.com/d/143avirUhym-kc74JZRxX1VDyR4nty6nm"
             class="absolute left-1/2 -translate-x-1/2 -top-[112px] size-[144px] object-contain z-30 pointer-events-none"
             alt="" />
@@ -51,11 +52,10 @@
             class="absolute -left-[13px] -bottom-[16px] w-[63px] h-auto z-20 pointer-events-none" alt="" />
 
         <!-- Main alert frame -->
-        <main class="relative rounded-3xl border-[6px] min-h-[180px] border-[#FDFDFD] px-14 py-5 flex flex-col gap-4 items-center justify-start"
+        <main class="rounded-3xl border-[6px] min-h-[180px] border-[#FDFDFD] px-6 py-5 flex flex-col gap-4 items-center justify-start"
             style="background-image: linear-gradient(90deg, rgba(3, 110, 180, 0.55) 0%, rgba(131, 0, 9, 0.55) 100%), linear-gradient(90deg, #000 0%, #000 100%); background-clip: padding-box;">
 
-            <!-- Header line -->
-            <section id="header"
+             <section id="header"
                 class="relative z-10 font-orbitron font-bold text-white text-[24px] flex items-center justify-center gap-3 flex-wrap leading-none w-full">
                 <span class="shrink-0">&gt; {{formattedAmount}} DARI</span>
                 <img id="profile-picture" src="{{gifterPicture}}"
@@ -83,7 +83,7 @@
         if (badges && badgeContainer) {
             badgeContainer.innerHTML += badges
                 .split(",")
-                .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-7 shrink-0" />`)
+                .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-6 shrink-0" />`)
                 .join(" ");
         }
 
