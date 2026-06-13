@@ -1,0 +1,83 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;900&display=swap");
+
+        body {
+            font-family: "Poppins", sans-serif;
+        }
+
+        #profile-picture[src=""] {
+            display: none;
+        }
+
+        #verified-badge-false {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="pt-8 pl-6 pr-6 pb-12 h-auto max-w-[860px] overflow-hidden">
+    <section class="relative max-w-[800px]">
+        <!-- Ornaments (right cluster) -->
+        <img src="https://lh3.googleusercontent.com/d/1_-l0GKiQIUnBpcgUoKbE0v2I5YeDsM_R"
+            class="absolute right-20 -top-6 z-50 w-[57px] filter-[drop-shadow(0_0_3px_#FFFBA1)]" alt="" />
+        <img src="https://lh3.googleusercontent.com/d/1XVxltVVzwOwrOjX-JW34bCaBfKQR1lat"
+            class="absolute right-0 -bottom-[66px] w-[323px] h-auto z-20 pointer-events-none" alt="" />
+
+        <!-- Header pill (overlaps the top-left of the main frame) -->
+        <section id="header"
+            class="absolute left-[40px] -top-6 z-20 flex items-center gap-2 px-8 py-2.5 rounded-tl-[80px] rounded-tr-[80px] rounded-bl-[40px] rounded-br-[40px] border-2 border-[#43073d] bg-[#eb0775] shadow-[inset_0px_0px_0px_4px_#fb54d2] whitespace-nowrap">
+            <img id="profile-picture" src="{{gifterPicture}}"
+                class="size-6 rounded-full border border-white shrink-0 object-cover bg-[#a93646]" alt="" />
+            <span class="shrink-0 font-bold text-white text-[24px] tracking-[-0.48px] truncate max-w-[260px]">{{gifterName}}</span>
+            <img id="verified-badge-{{isGifterVerified}}"
+                src="https://assets.tako.id/badges/validated-user.png" alt="" class="size-6 shrink-0" />
+            <div class="flex items-center shrink-0 gap-2 empty:hidden" id="badges"></div>
+            <span class="shrink-0 font-black text-white text-[24px]" style="font-feature-settings: 'ss02' 1;">-</span>
+            <span class="shrink-0 font-bold text-[#f5f5a8] text-[24px] tracking-[-0.48px]">{{formattedAmount}}</span>
+        </section>
+
+        <!-- Main alert frame -->
+        <main class="relative mt-[16px] min-h-[220px] overflow-hidden rounded-[48px] border-4 border-[#1b0627] pl-16 pr-40 py-14 flex items-center shadow-[0px_4px_24px_0px_#dd45e1,14px_14px_0px_0px_#bd32c1]">
+            <div aria-hidden="true" class="absolute inset-0 pointer-events-none rounded-[48px] bg-cover bg-center opacity-80"
+                style="background-image: url('https://lh3.googleusercontent.com/d/18jrTxwZXA2Cf4KywQyb82YaWMLZrkStB');"></div>
+            <div aria-hidden="true" class="absolute inset-0 pointer-events-none rounded-[48px]"
+                style="background-image: linear-gradient(90deg, #1b0426 38.94%, rgba(99, 15, 140, 0) 100%);"></div>
+            <div aria-hidden="true" class="absolute inset-0 pointer-events-none rounded-[44px] shadow-[inset_0px_0px_0px_8px_#e19fe6]"></div>
+
+            <div aria-hidden="true" class="absolute bottom-10 rounded-full blur-[59.349998474121094px] h-[20px] w-[415px] bg-[#E19FE6] z-10"></div>
+            <!-- Message body -->
+            <p id="content"
+                class="relative z-10 text-white text-[24px] leading-normal text-left w-full">
+                {{message}}</p>
+        </main>
+    </section>
+
+    <script>
+        const badges = "{{gifterBadges}}";
+        const badgeContainer = document.getElementById("badges");
+
+        if (badges && badgeContainer) {
+            badgeContainer.innerHTML += badges
+                .split(",")
+                .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-6 shrink-0" />`)
+                .join(" ");
+        }
+
+        const contentEl = document.getElementById("content");
+        const rawContent = contentEl.textContent.trim();
+
+        if (!rawContent) {
+            contentEl.textContent = "Tidak ada pesan";
+        } else {
+            contentEl.innerHTML = rawContent.replace(/\[([a-zA-Z0-9_]+)\]/g, (match, name) => {
+                const url = `https://assets.tako.id/stickers/${name}.png`;
+                return `<img src="${url}" class="align-middle h-9 inline-block"></img>`;
+            });
+        }
+        document.documentElement.style.fontSize = "16px";
+    </script>
+</body>
