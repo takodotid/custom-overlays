@@ -1,0 +1,80 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap");
+
+        body {
+            font-family: "Sora", sans-serif;
+        }
+
+        #profile-picture[src=""] {
+            display: none;
+        }
+
+        #verified-badge-false {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="pt-12 pl-4 pr-6 pb-8 h-auto max-w-[860px] overflow-hidden">
+    <section class="relative max-w-[790px]">
+        <!-- Logo (overhangs the top edge of the main frame) -->
+        <img src="https://lh3.googleusercontent.com/d/1IWS5qL05k-skKT8QDW7UXvAmsekHea_m"
+            class="absolute left-1/2 -translate-x-1/2 -top-9 z-20 w-[170px] h-[71px] object-contain pointer-events-none"
+            alt="" />
+
+        <!-- Main alert frame -->
+        <main
+            class="relative z-10 flex flex-col items-center justify-center gap-4 overflow-hidden rounded-[40px] border-[5px] border-[#621a1b] pt-12 pb-8 px-6 shadow-[16px_16px_0px_0px_#621a1b]"
+            style="background-image: linear-gradient(-89.28deg, #fbe8bf 38.258%, #faac06 88.314%);">
+            <!-- Background texture, stretched vertically to fill the frame -->
+            <img src="https://lh3.googleusercontent.com/d/1rmRB_oGhlU0D17h7q32O0O1VzROPE49f" aria-hidden="true"
+                class="absolute inset-0 w-full h-full object-fill opacity-40 pointer-events-none" alt="" />
+
+            <!-- Header pill -->
+            <section id="header"
+                class="relative z-10 flex items-center justify-center gap-2 px-6 py-2 rounded-[40px] bg-[#621a1b] whitespace-nowrap">
+                <img id="profile-picture" src="{{gifterPicture}}"
+                    class="size-8 rounded-full border border-[#621a1b] shrink-0 object-cover bg-[#621a1b]" alt="" />
+                <span class="shrink-0 font-bold text-[#fdfdfd] text-[24px] truncate max-w-[260px]">{{gifterName}}</span>
+                <img id="verified-badge-{{isGifterVerified}}" src="https://assets.tako.id/badges/validated-user.png"
+                    alt="" class="size-8 shrink-0" />
+                <div class="flex items-center shrink-0 gap-2 empty:hidden" id="badges"></div>
+                <span class="shrink-0 font-bold text-[#fdfdfd] text-[30px]">-</span>
+                <span class="shrink-0 font-bold text-[#fdfdfd] text-[24px]">{{formattedAmount}}</span>
+            </section>
+
+            <!-- Message body -->
+            <p id="content" class="relative z-10 w-full font-bold text-[#621a1b] text-[24px] leading-normal text-center">
+                {{message}}</p>
+        </main>
+    </section>
+
+    <script>
+        const badges = "{{gifterBadges}}";
+        const badgeContainer = document.getElementById("badges");
+
+        if (badges && badgeContainer) {
+            badgeContainer.innerHTML += badges
+                .split(",")
+                .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-8 shrink-0" />`)
+                .join(" ");
+        }
+
+        const contentEl = document.getElementById("content");
+        const rawContent = contentEl.textContent.trim();
+
+        if (!rawContent) {
+            contentEl.textContent = "Tidak ada pesan";
+        } else {
+            contentEl.innerHTML = rawContent.replace(/\[([a-zA-Z0-9_]+)\]/g, (match, name) => {
+                const url = `https://assets.tako.id/stickers/${name}.png`;
+                return `<img src="${url}" class="align-middle h-9 inline-block"></img>`;
+            });
+        }
+        document.documentElement.style.fontSize = "16px";
+    </script>
+</body>
