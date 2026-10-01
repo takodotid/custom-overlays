@@ -19,9 +19,6 @@
             display: none;
         }
 
-        #verified-badge-false {
-            display: none;
-        }
 
         .animate-float {
             animation: float 3s ease-in-out infinite;
@@ -110,7 +107,7 @@
                 <span>dari</span>
                 <div id="user" class="flex gap-2 items-center">
                     <h1 class="truncate">{{gifterName}}</h1>
-                    <img id="verified-badge-{{isGifterVerified}}" src="https://assets.tako.id/badges/validated-user.png" alt="" class="size-7 shrink-0" />
+                    <div class="flex items-center shrink-0 gap-2 empty:hidden" id="badges"></div>
                 </div>
             </div>
 
@@ -128,12 +125,12 @@
 
     <script>
         const badges = "{{gifterBadges}}";
-        const badgeContainer = document.getElementById("user");
+        const badgeContainer = document.getElementById("badges");
 
         if (badges && badgeContainer) {
             badgeContainer.innerHTML += badges
                 .split(",")
-                .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-7 shrink-0" />`)
+                .map((b) => `<img src="${b.trim()}" alt="" class="size-7 shrink-0" />`)
                 .join(" ");
         }
 

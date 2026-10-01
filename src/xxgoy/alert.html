@@ -19,9 +19,6 @@
             display: none;
         }
 
-        #verified-badge-false {
-            display: none;
-        }
 
         .header {
             clip-path: polygon(0% 0%, 100% 0%, 93% 100%, 0% 100%);
@@ -51,7 +48,7 @@
                     <div id="user" class="flex gap-2 items-center">
                         <h1 class="text-3xl font-bold truncate">{{gifterName}}</h1>
 
-                        <img id="verified-badge-{{isGifterVerified}}" src="https://assets.tako.id/badges/validated-user.png" alt="" class="size-7 shrink-0" />
+                        <div class="flex items-center shrink-0 gap-2 empty:hidden" id="badges"></div>
                     </div>
 
                     <h2 class="text-2xl font-semibold text-theme truncate">{{formattedAmount}}</h2>
@@ -71,12 +68,12 @@
 
     <script>
         const badges = "{{gifterBadges}}";
-        const badgeContainer = document.getElementById("user");
+        const badgeContainer = document.getElementById("badges");
 
         if (badges && badgeContainer) {
             badgeContainer.innerHTML += badges
                 .split(",")
-                .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-7 shrink-0" />`)
+                .map((b) => `<img src="${b.trim()}" alt="" class="size-7 shrink-0" />`)
                 .join(" ");
         }
 

@@ -13,9 +13,6 @@
             display: none;
         }
 
-        #verified-badge-false {
-            display: none;
-        }
     </style>
 </head>
 
@@ -33,8 +30,6 @@
             <img id="profile-picture" src="{{gifterPicture}}"
                 class="size-6 rounded-full border border-white shrink-0 object-cover bg-[#a93646]" alt="" />
             <span class="shrink-0 font-bold text-white text-[24px] tracking-[-0.48px] truncate max-w-[260px]">{{gifterName}}</span>
-            <img id="verified-badge-{{isGifterVerified}}"
-                src="https://assets.tako.id/badges/validated-user.png" alt="" class="size-6 shrink-0" />
             <div class="flex items-center shrink-0 gap-2 empty:hidden" id="badges"></div>
             <span class="shrink-0 font-black text-white text-[24px]" style="font-feature-settings: 'ss02' 1;">-</span>
             <span class="shrink-0 font-bold text-[#f5f5a8] text-[24px] tracking-[-0.48px]">{{formattedAmount}}</span>
@@ -63,7 +58,7 @@
         if (badges && badgeContainer) {
             badgeContainer.innerHTML += badges
                 .split(",")
-                .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="size-6 shrink-0" />`)
+                .map((b) => `<img src="${b.trim()}" alt="" class="size-6 shrink-0" />`)
                 .join(" ");
         }
 

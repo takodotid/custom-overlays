@@ -88,9 +88,6 @@
                 display: none;
             }
 
-            #verified-badge-false {
-                display: none;
-            }
             .icon {
                 flex-shrink: 0;
                 width: 24px;
@@ -118,7 +115,6 @@
                 <span>dari</span>
                 <img id="profile-picture" src="{{gifterPicture}}" class="icon" />
                 <span>{{gifterName}}</span>
-                <img id="verified-badge-{{isGifterVerified}}" src="https://assets.tako.id/badges/validated-user.png" alt="" class="icon" />
                 <span id="badges"></span>
             </h2>
             <p id="content" class="pesan">{{message}}</p>
@@ -131,7 +127,7 @@
             if (badges && badgeContainer) {
                 badgeContainer.innerHTML += badges
                     .split(",")
-                    .map((b) => `<img src="https://assets.tako.id/badges/${b.trim()}.png" alt="" class="icon" />`)
+                    .map((b) => `<img src="${b.trim()}" alt="" class="icon" />`)
                     .join(" ");
             }
 
